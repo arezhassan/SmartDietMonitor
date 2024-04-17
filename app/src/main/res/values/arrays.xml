@@ -1,0 +1,7 @@
+<resources>
+    <string-array name="serving_units">
+        <item>Grams</item>
+        <item>Ounce</item>
+        <item>Serving</item>
+    </string-array>
+</resources>

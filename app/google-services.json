@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "780295577215",
+    "project_id": "smart-diet-monitor",
+    "storage_bucket": "smart-diet-monitor.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:780295577215:android:73abfcbc3b1c90f72be94a",
+        "android_client_info": {
+          "package_name": "com.example.smartdietmonitoring"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCrrI9Sm7V0xOKv4yO41bS8YL4elagcU8E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

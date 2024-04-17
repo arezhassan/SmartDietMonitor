@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white">
+
+
+    <TextView
+        android:id="@+id/tvFoodItemName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/inter_semibold"
+        android:textColor="@color/red"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Oatmeal" />
+
+    <TextView
+        android:id="@+id/tvServingSize"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="20dp"
+        android:textColor="@color/green"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvFoodItemName"
+        tools:text="100 Calories" />
+
+    <ImageView
+        android:id="@+id/ivViewRecipe"
+        android:layout_width="45dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="30dp"
+        android:tint="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tvFoodItemName"
+        app:srcCompat="@drawable/view" />
+
+    <TextView
+        android:id="@+id/tvViewRecipe"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="View Recipe"
+        app:layout_constraintBottom_toBottomOf="@+id/tvServingSize"
+        app:layout_constraintEnd_toEndOf="@+id/ivViewRecipe"
+        app:layout_constraintStart_toStartOf="@+id/ivViewRecipe" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

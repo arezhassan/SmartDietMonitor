@@ -1,0 +1,16 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.SmartDietMonitoring" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your light theme here. -->
+        <!-- <item name="colorPrimary">@color/my_light_primary</item> --> <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="android:textColor">@color/black</item>
+        <item name="backgroundColor">@color/backgroundscreen</item>
+        <item name="android:fontFamily">@font/inter</item>
+        <item name="android:statusBarColor">@color/green</item>
+        <item name="spinnerStyle">@style/SpinnerStyle</item>
+        <item name="android:numberPickerStyle">@style/NumberPickerStyle</item>
+
+    </style>
+
+    <style name="Theme.SmartDietMonitoring" parent="Base.Theme.SmartDietMonitoring" />
+</resources>

@@ -1,0 +1,23 @@
+<!-- bottom_navigation_menu.xml -->
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/plan"
+        android:icon="@drawable/nutrition"
+        android:title="Meal Plan"
+
+        />
+    <item
+        android:id="@+id/today"
+        android:icon="@drawable/meal"
+        android:title="Today"
+        />
+
+    <item
+        android:id="@+id/progress"
+        android:icon="@drawable/progress"
+        android:title="Progress"
+
+        />
+
+</menu>
