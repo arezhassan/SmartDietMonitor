@@ -27,7 +27,7 @@ public class LoginPage extends AppCompatActivity {
     LottieAnimationView animation;
 
     FirebaseAuth mAuth;
-    TextView tvNotAUser;
+    TextView tvNotAUser, tvForgotPassword;
 
 
 
@@ -53,6 +53,15 @@ public class LoginPage extends AppCompatActivity {
                 Intent i = new Intent(LoginPage.this, RegisterPage1.class);
                 startActivity(i);
                 finish();
+            }
+        });
+
+        tvForgotPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(LoginPage.this, ForgetPassword.class);
+                startActivity(i);
+
             }
         });
     }
@@ -97,6 +106,7 @@ public class LoginPage extends AppCompatActivity {
 
     private void initializeViews() {
         tvNotAUser = findViewById(R.id.tvNotAUser);
+        tvForgotPassword=findViewById(R.id.tvForgotPassword);
         mAuth = FirebaseAuth.getInstance();
         etEmail = findViewById(R.id.etEmail);
         cardLogin = findViewById(R.id.cardLogin);

@@ -28,6 +28,7 @@ import com.squareup.picasso.Picasso;
 
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -55,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         init();
         getUserData();
         setBottomNavBar();
@@ -74,6 +76,8 @@ public class MainActivity extends AppCompatActivity {
                     selectedFragment = new Progress();
                 } else if (item.getItemId() == R.id.plan) {
                     selectedFragment = new MealPlan();
+                } else if(item.getItemId()==R.id.user){
+                    selectedFragment = new com.example.smartdietmonitoring.Fragments.Profile();
                 }
 
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
@@ -103,7 +107,7 @@ public class MainActivity extends AppCompatActivity {
         };
 
         int[] colors = new int[]{
-                ContextCompat.getColor(this, R.color.white),  // Green color for active state
+                ContextCompat.getColor(this, R.color.black),  // Green color for active state
                 ContextCompat.getColor(this, R.color.transparentwhite),  // Green color for active state
         };
 

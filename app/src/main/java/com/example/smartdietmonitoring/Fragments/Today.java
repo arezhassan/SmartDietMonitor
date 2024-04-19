@@ -29,6 +29,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.airbnb.lottie.LottieAnimationView;
+import com.example.smartdietmonitoring.Activities.AddWeight;
 import com.example.smartdietmonitoring.Activities.LoginPage;
 import com.example.smartdietmonitoring.Activities.Profile;
 import com.example.smartdietmonitoring.Activities.RegisterPage1;
@@ -47,6 +48,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import androidx.appcompat.app.AppCompatActivity;
 
 public class Today extends Fragment {
 
@@ -54,7 +56,7 @@ public class Today extends Fragment {
     private int lunchCals;
     private int dinnerCals;
 
-    ImageView ivAvatar;
+    ImageView ivAvatar, ivMenu;
     AlertDialog dialog;
 
     ArrayList<FoodItem> suggestedFoods;
@@ -285,19 +287,48 @@ public class Today extends Fragment {
         cardViewDinner = view.findViewById(R.id.cardViewDinner);
 
         ivAvatar=view.findViewById(R.id.ivAvatar);
+        ivMenu=view.findViewById(R.id.ivMenu);
 
         ivAvatar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i= new Intent(getContext(), Profile.class);
+                Intent i= new Intent(getContext(),  com.example.smartdietmonitoring.Activities.Profile.class);
                 i.putExtra("userName",username);
                 requireContext().startActivity(i);
             }
         });
+
+        ivMenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                OptionsBottomSheetDialogFragment bottomSheetDialogFragment = OptionsBottomSheetDialogFragment.newInstance();
+                bottomSheetDialogFragment.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        int id = v.getId();
+                        if (id == R.id.ivEditProfile) {
+                            navigateToEditProfile();
+                            // Handle Edit Profile option
+                        } else if (id == R.id.ivLogout) {
+                            FirebaseAuth.getInstance().signOut();
+                            navigateToLogin();
+                            // Handle Logout option
+                        } else if (id == R.id.ivTrackWeight) {
+                            navigateToAddWeight();
+                            // Handle Track Weight option
+                        }
+                        bottomSheetDialogFragment.dismiss(); // Dismiss the bottom sheet dialog after an option is selected
+                    }
+                });
+                bottomSheetDialogFragment.show(requireActivity().getSupportFragmentManager(), bottomSheetDialogFragment.getTag());
+
+            }
+        });
+
         tvViewProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i= new Intent(getContext(), Profile.class);
+                Intent i= new Intent(getContext(),  com.example.smartdietmonitoring.Activities.Profile.class);
                 i.putExtra("userName",username);
                 requireContext().startActivity(i);
             }
@@ -305,7 +336,7 @@ public class Today extends Fragment {
         tvUserName.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i= new Intent(getContext(), Profile.class);
+                Intent i= new Intent(getContext(),  com.example.smartdietmonitoring.Activities.Profile.class);
                 i.putExtra("userName",username);
                 requireContext().startActivity(i);
             }
@@ -333,6 +364,19 @@ public class Today extends Fragment {
 
 
 
+    }
+
+    private void navigateToEditProfile() {
+        Intent i=new Intent(requireContext(), com.example.smartdietmonitoring.Activities.Profile.class);
+        i.putExtra("userName",username);
+        startActivity(i);
+    } private void navigateToLogin() {
+        Intent i=new Intent(requireContext(), LoginPage.class);
+        startActivity(i);
+        requireActivity().finish();
+    } private void navigateToAddWeight() {
+        Intent i=new Intent(requireContext(), AddWeight.class);
+        startActivity(i);
     }
 
 

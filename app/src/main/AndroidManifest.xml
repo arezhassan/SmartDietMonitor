@@ -15,6 +15,12 @@
         android:theme="@style/Theme.SmartDietMonitoring"
         tools:targetApi="31">
         <activity
+            android:name=".Activities.AddWeight"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.ForgetPassword"
+            android:exported="false" />
+        <activity
             android:name=".Activities.ViewWeeklyProgress"
             android:exported="false" />
         <activity

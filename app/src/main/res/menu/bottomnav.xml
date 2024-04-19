@@ -19,5 +19,11 @@
         android:title="Progress"
 
         />
+    <item
+        android:id="@+id/user"
+        android:icon="@drawable/person"
+        android:title="You"
+
+        />
 
 </menu>

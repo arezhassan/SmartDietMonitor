@@ -32,6 +32,15 @@ public class DateUtils {
         String keyDate = convertToFirebaseKey(currentDate);
         return keyDate;
     }
+public static String getNormalCurrentDate() {
+        Calendar calendar = Calendar.getInstance();
+        int year = calendar.get(Calendar.YEAR);
+        int month = calendar.get(Calendar.MONTH) + 1; // Month is zero-based, so add 1
+        int day = calendar.get(Calendar.DAY_OF_MONTH);
+
+        String currentDate = day + " " + getMonthName(month) + " " + year;
+        return currentDate;
+    }
 
     public static String getMonthName(int month) {
         String[] monthNames = {"January", "February", "March", "April", "May", "June", "July",

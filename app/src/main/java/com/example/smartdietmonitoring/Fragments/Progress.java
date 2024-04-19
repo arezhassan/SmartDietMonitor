@@ -29,6 +29,8 @@ import com.anychart.enums.Anchor;
 import com.anychart.enums.HoverMode;
 import com.anychart.enums.Position;
 import com.anychart.enums.TooltipPositionMode;
+import com.example.smartdietmonitoring.Activities.AddWeight;
+import com.example.smartdietmonitoring.Activities.LoginPage;
 import com.example.smartdietmonitoring.Activities.ViewWeeklyProgress;
 import com.example.smartdietmonitoring.R;
 import com.google.firebase.auth.FirebaseAuth;
@@ -59,16 +61,15 @@ public class Progress extends Fragment {
     ProgressBar progressBarWater;
 
 
-    ImageView ivPlusWater, ivMinusWater;
+    ImageView ivPlusWater, ivMinusWater, ivMenu;
 
-    String userId;
+    String userId, userName;
 
-    int waterCount = 0, streakCount=0;
+    int waterCount = 0, streakCount = 0;
 
     @Override
     public void onStart() {
         super.onStart();
-
 
 
     }
@@ -88,36 +89,99 @@ public class Progress extends Fragment {
         //Test Bar Graph
         tvAverageCalories = view.findViewById(R.id.tvAverageCalories);
         tvWaterCount = view.findViewById(R.id.tvWaterCount);
-        tvStreakCount= view.findViewById(R.id.tvStreakCount);
-        cardViewWeeklyReport=view.findViewById(R.id.cardViewWeeklyReport);
-
+        tvStreakCount = view.findViewById(R.id.tvStreakCount);
+        cardViewWeeklyReport = view.findViewById(R.id.cardViewWeeklyReport);
 
 
         progressBarWater = view.findViewById(R.id.progressBarWater);
         ivPlusWater = view.findViewById(R.id.ivPlusWater);
         ivMinusWater = view.findViewById(R.id.ivMinusWater);
+        ivMenu = view.findViewById(R.id.ivMenu);
         userId = FirebaseAuth.getInstance().getUid();
         progressBarWater.setMax(9);
 
         getWaterCount();
+        getUserName();
+        menu();
         navigateToWeeklyReports();
         getStreakCount();
         setWater();
 
 
-
-
         return view;
+    }
+
+    private void getUserName() {
+        DatabaseReference user = FirebaseDatabase.getInstance().getReference()
+                .child(userId);
+        user.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists())
+                    userName = snapshot.child("userName").getValue(String.class);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
+    private void menu() {
+        ivMenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                OptionsBottomSheetDialogFragment bottomSheetDialogFragment = OptionsBottomSheetDialogFragment.newInstance();
+                bottomSheetDialogFragment.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        int id = v.getId();
+                        if (id == R.id.ivEditProfile) {
+                            navigateToEditProfile();
+                            // Handle Edit Profile option
+                        } else if (id == R.id.ivLogout) {
+                            FirebaseAuth.getInstance().signOut();
+                            navigateToLogin();
+                            // Handle Logout option
+                        } else if (id == R.id.ivTrackWeight) {
+                            navigateToAddWeight();
+                            // Handle Track Weight option
+                        }
+                        bottomSheetDialogFragment.dismiss(); // Dismiss the bottom sheet dialog after an option is selected
+                    }
+                });
+                bottomSheetDialogFragment.show(requireActivity().getSupportFragmentManager(), bottomSheetDialogFragment.getTag());
+
+            }
+        });
     }
 
     private void navigateToWeeklyReports() {
         cardViewWeeklyReport.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i=new Intent(requireContext(), ViewWeeklyProgress.class);
+                Intent i = new Intent(requireContext(), ViewWeeklyProgress.class);
                 requireContext().startActivity(i);
             }
         });
+    }
+
+    private void navigateToEditProfile() {
+        Intent i = new Intent(requireContext(), com.example.smartdietmonitoring.Activities.Profile.class);
+        i.putExtra("userName", userName);
+        startActivity(i);
+    }
+
+    private void navigateToLogin() {
+        Intent i = new Intent(requireContext(), LoginPage.class);
+        startActivity(i);
+        requireActivity().finish();
+    }
+
+    private void navigateToAddWeight() {
+        Intent i = new Intent(requireContext(), AddWeight.class);
+        startActivity(i);
     }
 
     private void getStreakCount() {
@@ -128,8 +192,8 @@ public class Progress extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 streakCount = (int) snapshot.getChildrenCount();
-                tvStreakCount.setText(String.valueOf(streakCount)+ " Days Streak");
-                Log.d("Count Streak: " , String.valueOf(streakCount))   ;
+                tvStreakCount.setText(String.valueOf(streakCount) + " Days Streak");
+                Log.d("Count Streak: ", String.valueOf(streakCount));
 
             }
 
@@ -142,7 +206,6 @@ public class Progress extends Fragment {
 
 
     private void setWater() {
-
 
 
         ivMinusWater.setOnClickListener(new View.OnClickListener() {
@@ -197,6 +260,7 @@ public class Progress extends Fragment {
 
 
             }
+
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
@@ -204,8 +268,6 @@ public class Progress extends Fragment {
         });
 
     }
-
-
 
 
 }

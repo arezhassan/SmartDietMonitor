@@ -13,7 +13,7 @@ import com.example.smartdietmonitoring.R;
 
 public class Launcher extends AppCompatActivity {
 
-    private static final long DELAY_TIME_MS = 2000; // 2 seconds delay
+    private static final long DELAY_TIME_MS = 1300;// 2 seconds delay
 
     TextView tvPersonalizing;
     String activity;

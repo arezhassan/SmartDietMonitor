@@ -36,36 +36,33 @@
         android:id="@+id/fragment_container"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:background="@color/backgroundscreen"
         app:layout_constraintBottom_toTopOf="@+id/bottomnav"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" >
+        app:layout_constraintTop_toTopOf="parent">
 
     </FrameLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomnav"
         android:layout_width="0dp"
-        android:layout_height="80dp"
-        android:background="@color/green"
+        android:layout_height="55dp"
+        android:background="@color/white"
         android:clipToPadding="false"
-        android:padding="10dp"
-        app:activeIndicatorLabelPadding="8dp"
+        android:isScrollContainer="true"
+        android:padding="1dp"
+        app:activeIndicatorLabelPadding="2dp"
+        app:elevation="20dp"
         app:itemActiveIndicatorStyle="@style/Base.Theme.SmartDietMonitoring"
-        app:itemIconSize="38dp"
-        app:itemPaddingBottom="2dp"
-        app:itemPaddingTop="2dp"
+        app:itemIconSize="30dp"
+        app:itemPaddingBottom="0dp"
+        app:itemPaddingTop="5dp"
         app:itemTextAppearanceActiveBoldEnabled="true"
-        app:itemTextAppearanceInactive="@style/Widget.Material3.BottomNavigationView.ActiveIndicator"
-        app:itemTextColor="@color/white"
+        app:itemTextColor="#CB000000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/bottomnav" >
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
-    </com.google.android.material.bottomnavigation.BottomNavigationView>
+        app:menu="@menu/bottomnav" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

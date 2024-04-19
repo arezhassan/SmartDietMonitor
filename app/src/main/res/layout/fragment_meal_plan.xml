@@ -23,6 +23,17 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
+                <ImageView
+                    android:id="@+id/imageView15"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:alpha="0.2"
+                    android:src="@drawable/clipart"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
                 <androidx.cardview.widget.CardView
                     android:id="@+id/cardDinner"
                     android:layout_width="match_parent"
@@ -30,9 +41,11 @@
                     android:layout_marginStart="20dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginEnd="20dp"
+                    android:layout_marginBottom="30dp"
                     app:cardBackgroundColor="@color/white"
                     app:cardCornerRadius="20dp"
-                    app:cardElevation="0dp"
+                    app:cardElevation="5dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/cardLunch">
@@ -58,7 +71,7 @@
                             android:layout_marginTop="10dp"
                             android:layout_marginBottom="10dp"
                             app:cardBackgroundColor="@color/green"
-                            app:cardCornerRadius="20dp"
+                            app:cardCornerRadius="5dp"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintHorizontal_bias="0.5"
@@ -88,7 +101,7 @@
                                     android:layout_marginEnd="10dp"
                                     android:layout_marginBottom="10dp"
                                     app:cardBackgroundColor="@color/white"
-                                    app:cardCornerRadius="20dp"
+                                    app:cardCornerRadius="5dp"
                                     app:cardElevation="0dp"
                                     app:layout_constraintBottom_toBottomOf="parent"
                                     app:layout_constraintEnd_toEndOf="parent"
@@ -141,7 +154,7 @@
                     android:layout_marginEnd="20dp"
                     app:cardBackgroundColor="@color/white"
                     app:cardCornerRadius="20dp"
-                    app:cardElevation="0dp"
+                    app:cardElevation="5dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/cardBreakfast">
@@ -167,7 +180,7 @@
                             android:layout_marginTop="10dp"
                             android:layout_marginBottom="10dp"
                             app:cardBackgroundColor="@color/green"
-                            app:cardCornerRadius="20dp"
+                            app:cardCornerRadius="5dp"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintHorizontal_bias="0.5"
@@ -197,7 +210,7 @@
                                     android:layout_marginEnd="10dp"
                                     android:layout_marginBottom="10dp"
                                     app:cardBackgroundColor="@color/white"
-                                    app:cardCornerRadius="20dp"
+                                    app:cardCornerRadius="5dp"
                                     app:cardElevation="0dp"
                                     app:layout_constraintBottom_toBottomOf="parent"
                                     app:layout_constraintEnd_toEndOf="parent"
@@ -246,12 +259,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
-                    android:layout_marginTop="80dp"
+                    android:layout_marginTop="50dp"
                     android:fontFamily="@font/inter_bold"
                     android:text="Add Meals"
                     android:textSize="38sp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toBottomOf="@+id/tvDate" />
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/cardBreakfast"
@@ -262,7 +275,7 @@
                     android:layout_marginEnd="20dp"
                     app:cardBackgroundColor="@color/white"
                     app:cardCornerRadius="20dp"
-                    app:cardElevation="0dp"
+                    app:cardElevation="5dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tvDeleteItems">
@@ -288,7 +301,7 @@
                             android:layout_marginTop="10dp"
                             android:layout_marginBottom="10dp"
                             app:cardBackgroundColor="@color/green"
-                            app:cardCornerRadius="20dp"
+                            app:cardCornerRadius="5dp"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintHorizontal_bias="0.5"
@@ -318,7 +331,7 @@
                                     android:layout_marginEnd="10dp"
                                     android:layout_marginBottom="10dp"
                                     app:cardBackgroundColor="@color/white"
-                                    app:cardCornerRadius="20dp"
+                                    app:cardCornerRadius="5dp"
                                     app:cardElevation="0dp"
                                     app:layout_constraintBottom_toBottomOf="parent"
                                     app:layout_constraintEnd_toEndOf="parent"
@@ -366,12 +379,47 @@
                     android:id="@+id/tvDeleteItems"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="3dp"
                     android:text="Delete a meal?"
                     android:textColor="@color/red"
                     android:textSize="20sp"
                     app:layout_constraintStart_toStartOf="@+id/textView2"
                     app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+                <TextView
+                    android:id="@+id/textView35"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="20dp"
+                    android:text="Today"
+                    android:textColor="#E6000000"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tvDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:fontFamily="@font/inter_semibold"
+                    android:text="Loading.."
+                    android:textColor="#B2000000"
+                    android:textSize="20sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView35"
+                    tools:text="Wed, 18 Aug" />
+
+                <View
+                    android:id="@+id/divider2"
+                    android:layout_width="409dp"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="5dp"
+                    android:background="#32000000"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvDate" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

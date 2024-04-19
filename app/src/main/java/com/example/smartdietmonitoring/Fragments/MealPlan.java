@@ -1,6 +1,7 @@
 package com.example.smartdietmonitoring.Fragments;
 
 import static com.example.smartdietmonitoring.Utilities.DateUtils.convertToFirebaseKey;
+import static com.example.smartdietmonitoring.Utilities.DateUtils.getNormalCurrentDate;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -45,11 +46,10 @@ public class MealPlan extends Fragment {
     View view;
     CardView cardBreakfast, cardAddBreakfast, cardLunch, cardAddLunch, cardDinner, cardAddDinner;
     RecyclerView rvBreakFastItems, rvLunchItems, rvDinnerItems;
-    TextView tvBreakfastCalories, tvLunchCalories, tvDinnerCalories, tvDeleteItems;
+    TextView tvBreakfastCalories, tvLunchCalories, tvDinnerCalories, tvDeleteItems, tvDate;
 
 
     AlertDialog dialog;
-
 
 
     ArrayList<FoodItem> breakfastItems;
@@ -71,17 +71,27 @@ public class MealPlan extends Fragment {
     LinearLayoutManager dinnerLayout;
     private int totalDayCalories = 0; // Define a global variable
 
+    String date;
 
 
-    public void onStart(){
+    public void onStart() {
         super.onStart();
-        if(!isNetworkAvailable()){
+        if (!isNetworkAvailable()) {
             showInternetDialog();
-        }else{
+            setDate();
+
+        } else {
+            setDate();
             showCustomDialog();
             calculateBreakfastCalories();
         }
 
+    }
+
+    private void setDate() {
+        date = getNormalCurrentDate();
+        if (date != null)
+            tvDate.setText(date);
     }
 
 
@@ -116,14 +126,11 @@ public class MealPlan extends Fragment {
         tvBreakfastCalories = view.findViewById(R.id.tvBreakfastCalories);
         tvLunchCalories = view.findViewById(R.id.tvLunchCalories);
         tvDinnerCalories = view.findViewById(R.id.tvDinnerCalories);
-        tvDeleteItems=view.findViewById(R.id.tvDeleteItems);
+        tvDeleteItems = view.findViewById(R.id.tvDeleteItems);
+        tvDate = view.findViewById(R.id.tvDate);
+
 
         //calculating calories
-
-
-
-
-
 
 
         // Set up any event listeners or additional functionality here
@@ -210,7 +217,7 @@ public class MealPlan extends Fragment {
     }
 
     private void getBreakfastData() {
-        if(FirebaseAuth.getInstance().getCurrentUser()!=null) {
+        if (FirebaseAuth.getInstance().getCurrentUser() != null) {
 
             DatabaseReference breakfastRef = FirebaseDatabase.getInstance().getReference()
                     .child("meals")
@@ -244,7 +251,7 @@ public class MealPlan extends Fragment {
     }
 
     private void getLunchData() {
-        if(FirebaseAuth.getInstance().getCurrentUser()!=null) {
+        if (FirebaseAuth.getInstance().getCurrentUser() != null) {
 
             DatabaseReference lunchData = FirebaseDatabase.getInstance().getReference()
                     .child("meals")
@@ -279,7 +286,7 @@ public class MealPlan extends Fragment {
 
 
     private void getDinnerData() {
-        if(FirebaseAuth.getInstance().getCurrentUser()!=null) {
+        if (FirebaseAuth.getInstance().getCurrentUser() != null) {
 
             DatabaseReference dinnerData = FirebaseDatabase.getInstance().getReference()
                     .child("meals")
@@ -320,7 +327,7 @@ public class MealPlan extends Fragment {
 
 
     private void calculateBreakfastCalories() {
-        if(FirebaseAuth.getInstance().getCurrentUser()!=null) {
+        if (FirebaseAuth.getInstance().getCurrentUser() != null) {
             DatabaseReference breakfastRef = FirebaseDatabase.getInstance().getReference()
                     .child("meals").child(FirebaseAuth.getInstance().getUid()).child(getCurrentDate()).child("breakfast");
             breakfastRef.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -351,7 +358,7 @@ public class MealPlan extends Fragment {
     }
 
     private void calculateLunchCalories() {
-        if(FirebaseAuth.getInstance().getCurrentUser()!=null) {
+        if (FirebaseAuth.getInstance().getCurrentUser() != null) {
 
             DatabaseReference lunchRef = FirebaseDatabase.getInstance().getReference()
                     .child("meals").child(FirebaseAuth.getInstance().getUid()).child(getCurrentDate()).child("lunch");
@@ -382,7 +389,7 @@ public class MealPlan extends Fragment {
     }
 
     private void calculateDinnerCalorie() {
-        if(FirebaseAuth.getInstance().getCurrentUser()!=null) {
+        if (FirebaseAuth.getInstance().getCurrentUser() != null) {
 
             DatabaseReference dinnerRef = FirebaseDatabase.getInstance().getReference()
                     .child("meals").child(FirebaseAuth.getInstance().getUid()).child(getCurrentDate()).child("dinner");
@@ -420,13 +427,14 @@ public class MealPlan extends Fragment {
 
 
     private void AddTotalCaloriesToDB(int calories) {
-        if(FirebaseAuth.getInstance().getCurrentUser()!=null) {
+        if (FirebaseAuth.getInstance().getCurrentUser() != null) {
 
             DatabaseReference db = FirebaseDatabase.getInstance().getReference().child("meals")
                     .child(FirebaseAuth.getInstance().getUid()).child(getCurrentDate()).child("totalCalories");
             db.setValue(calories);
         }
     }
+
     private void showCustomDialog() {
         // Inflate the custom layout
         View dialogView = LayoutInflater.from(requireContext()).inflate(R.layout.dialog, null);
@@ -444,6 +452,7 @@ public class MealPlan extends Fragment {
         dialog = builder.create();
         dialog.show();
     }
+
     private void refreshData() {
         // Clear existing data lists
         breakfastItems.clear();
@@ -460,6 +469,7 @@ public class MealPlan extends Fragment {
         calculateLunchCalories();
         calculateDinnerCalorie();
     }
+
     private void showInternetDialog() {
         // Inflate the custom layout
         View dialogView = LayoutInflater.from(requireContext()).inflate(R.layout.dialognointernet, null);
@@ -476,8 +486,9 @@ public class MealPlan extends Fragment {
         dialog = builder.create();
         dialog.show();
     }
+
     private boolean isNetworkAvailable() {
-        ConnectivityManager connectivityManager = (ConnectivityManager) requireActivity().getSystemService (Context.CONNECTIVITY_SERVICE);
+        ConnectivityManager connectivityManager = (ConnectivityManager) requireActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
         return activeNetworkInfo != null && activeNetworkInfo.isConnected();
     }

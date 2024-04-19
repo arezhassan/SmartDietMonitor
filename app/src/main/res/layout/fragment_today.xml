@@ -4,13 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/backgroundscreen"
-    tools:context=".Fragments.Today" >
+    android:background="#F3F3F3"
+    tools:context=".Fragments.Today">
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scrollbarSize="0dp">
+        android:scrollbarSize="2dp"
+        android:scrollbarStyle="outsideOverlay">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -20,13 +21,13 @@
                 android:id="@+id/tvToday"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="100dp"
+                android:layout_marginStart="10dp"
                 android:fontFamily="@font/inter_bold"
                 android:text="Today"
                 android:textSize="34sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintBottom_toBottomOf="@+id/ivMenu"
+                app:layout_constraintStart_toEndOf="@+id/ivMenu"
+                app:layout_constraintTop_toTopOf="@+id/ivMenu" />
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardView"
@@ -36,7 +37,7 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="20dp"
                 android:persistentDrawingCache="animation"
-                app:cardCornerRadius="20dp"
+                app:cardCornerRadius="5dp"
                 app:cardElevation="20dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -154,7 +155,7 @@
                 android:layout_marginEnd="20dp"
                 android:animation="@anim/slide_left_to_right"
                 app:cardBackgroundColor="@color/white"
-                app:cardCornerRadius="20dp"
+                app:cardCornerRadius="5dp"
                 app:cardElevation="0dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -211,7 +212,7 @@
                 android:layout_marginEnd="20dp"
                 android:animation="@anim/slide_left_to_right"
                 app:cardBackgroundColor="@color/white"
-                app:cardCornerRadius="20dp"
+                app:cardCornerRadius="5dp"
                 app:cardElevation="0dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -267,7 +268,7 @@
                 android:layout_marginEnd="20dp"
                 android:animation="@anim/slide_left_to_right"
                 app:cardBackgroundColor="@color/white"
-                app:cardCornerRadius="20dp"
+                app:cardCornerRadius="5dp"
                 app:cardElevation="0dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -316,10 +317,10 @@
 
             <ImageView
                 android:id="@+id/ivAvatar"
-                android:layout_width="65dp"
-                android:layout_height="65dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="30dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="20dp"
                 android:src="@drawable/avatar"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -343,6 +344,7 @@
                 android:text="View Profile"
                 android:textColor="@color/red"
                 android:textSize="10sp"
+                android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="@+id/ivAvatar"
                 app:layout_constraintStart_toStartOf="@+id/ivAvatar"
                 app:layout_constraintTop_toBottomOf="@+id/tvUserName" />
@@ -371,6 +373,16 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView32" />
+
+            <ImageView
+                android:id="@+id/ivMenu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="40dp"
+                android:src="@drawable/menu"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
